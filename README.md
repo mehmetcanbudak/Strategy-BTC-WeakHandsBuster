@@ -1,80 +1,102 @@
 # About
-This repository holds an open-source trading strategy maintained by the [Superalgos Community](https://t.me/superalgoscommunity). The strategy conforms to the Superalgos Protocol, therefore, it may function as a fully automated trading system within the [Superalgos Platform](https://superalgos.org/tools-superalgos-platform.shtml). 
+This repository holds an open-source trading strategy maintained by the [Superalgos Community](https://t.me/superalgoscommunity). The strategy was released in the community's Telegram group in August 2019 and has been trading live since. An evolution of the system is currently available as version 2. This page explains the trading system and analyzes its performance.
 
-People not interested in trading automation may still obtain the strategy's rules (situations, conditions, and formulas) from the app's Designer interface, and use the set of rules as they see fit. The app may also be used for testing ideas, for backtesting and paper-trading (to obtain live signals!).
+The trading system conforms to the Superalgos Trading Protocol, therefore, it may function as a fully automated trading system within [Superalgos](https://superalgos.org). 
 
-# Weak-hands Buster - BTC
+People not interested in trading automation may still obtain the strategy's rules (situations, conditions, and formulas) from Superalgos' design space and use the set of rules as they see fit. Superalgos may also be used for testing trading ideas, for backtesting, and paper-trading (to obtain live signals!).
 
-## Performance in Backtests (Poloniex)
+# The Files
 
-| Details | Jan - Aug 2019 | 2018 |
-| :--- | :---: | :---: |
-| Trades: | 8 | 19 |
-| Hits: | 7 | 12 |
-| Fails: | 1 | 7 |
-| ROI*: | 87.5% | 549% |
+* ```Share - Workspace - Weak-hands buster - BTC - SDA v.0.0.3.json```: This is virtually the original file ([the original](https://github.com/Superalgos/Strategy-BTC-WeakHandsBuster/blob/8f1879adb9be491fa28f34b58344d5223f4cdf3e/Share%20-%20Workspace%20-%20Weak-hands%20buster%20-%20BTC%20-%201hr.json) was renamed several times), first published in this repository on September 2019. It is a legacy version of a workspace containing the trading system. It may not be loaded in the current version of the system due to backward-compatibility issues, but it is kept for its historical value.
 
-[ * ] The strategy starts with an *initial capital* and reinvests accumulated profits in every trade. ROI is calculated over the *initial capital*.
+* ```Weak-Hands Buster Trading System - Original.json```: This is the original version of the trading system as first published, but in a format that is usable in the current version of Superalgos.
 
-## Live Trading Performance
+* ```Weak-Hands Buster Trading System - v.2 - Announcements.json```: This is version 2 of the trading system, released on April 2020, and now shipping with Superalgos. It features several improvements over the original version, as per the below details. The trading system is set up with optional [Telegram Announcements](https://docs.superalgos.org/suite-telegram-announcements.html) that may broadcast the trading session's activity over a Telegram group (when running on Superalgos).
 
-| Details | Sep - Dec 2019 |
-| :--- | :---: |
-| Trades: | 2 |
-| Hits: | 2 |
-| Fails: | 0 |
-| ROI*: | 46.7% |
 
-## Live Trades
+# Weak-hands Buster (WHB)
 
-### 2019 Sep - Dec
+## WHB V.2 Performance in Backtests (Binance) at the Time of Publishing
 
-![image](https://user-images.githubusercontent.com/13994516/70468550-9a6efb00-1ac7-11ea-891f-0f3f04807cff.png)
+| Details | Jan 2018 - Mar 2020 | 2020 (Jan - Mar) | 2019 | 2018 | 
+| :--- | :---: | :---: | :---: | :---: |
+| Trades: | **24** | 2 | 9 | 13 |
+| Hits: | **19** | 1 | 8 | 10 |
+| Fails: | **5** | 1 | 1 | 3 |
+|Hit Ratio: | **79%** | 50% | 89% | 77% |
+| ROI*: | **2662%** | 75% | 142% | 551% |
 
-## Specifications
+[ * ] The above table shows the results for different periods tested independently. Each backtest starts with an *initial capital* and the system reinvests accumulated profits in every trade. ROI is calculated over the *initial capital* for each backtest and the result is rounded to the closest integer. Because the system reinvests accumulated profits, the sum of ROI in different periods is not the same as ROI for all periods run in one single test (first column).
 
-JSON file compatible with the Superalgos Desktop App v.0.0.3
+**Assumptions**:
 
-### Market
+* Slippage: 0.1% in all orders.
+* Fees: 0.1% in all orders.
 
-USDT-BTC, with **BTC as the base asset**.
+## Market
 
-### Description
+USDT-BTC, with BTC as the base asset.
 
-The strategy is dissected [in this article](https://hackernoon.com/how-to-increase-your-bitcoin-holdings-in-a-bear-market-part-1-kjwp2gwu).
-
-### Strategy Goal
+## Strategy Goal
 
 Accumulate bitcoin during bear markets and / or consolidation periods, with a conservative approach to minimize risk.
 
-### Approach
+## Approach
 
-We split the goal in two:
+Split the goal into two fundamental notions:
 
-1. We focus on potentially big market moves, therefore, the strategy is optimized for major trend reversals resulting in long bear markets. Significant consolidations during bull markets are targetted as well.
+1. **Focus on potentially big market moves**. The strategy is optimized for major trend reversals resulting in long bear markets. Significant consolidations during bull markets are targetted as well.
 
-2. We take the clearest and most promising opportunities only. We pass on everything else.
+2. **Take the clearest and most promising opportunities only**. We pass on everything else to avoid failures and to preserve capital.
 
-### Trading idea
+## Trading idea
+
+The original system is dissected [in this Hackernoon article](https://hackernoon.com/how-to-increase-your-bitcoin-holdings-in-a-bear-market-part-1-kjwp2gwu). Version 2 maintains the trading idea and the take position event almost intact. 
 
 The main trading idea is to identify short-term reversals as well as continuations and deepening of trends marked by a break down of the Bollinger Bands (BB) in the 1-hour chart, using the Percentage Bandwidth (%B) indicator, the Bollinger Bands Moving Average (BB MA) and the Bollinger Band deviation to assess momentum and volatility, optimize the take position event, and filter out late entries.
 
-## Main Backtesting Trades
+## WHB V.2&mdash;What Changed
 
-### 2018 Jan-Mar
-![Weak-hands-buster 2018 jan-mar](https://user-images.githubusercontent.com/13994516/65391693-70c9f180-dd6c-11e9-92d4-fe496462ead0.png)
+* The two different situations making up the take position event were split into two separate strategies operating under the same trading system. This means that take profit and stop targets may be managed separately for each take position situation, as it should have been from the start. This is the first case of two complementary strategies running under the same trading system.
 
-### 2018 Apr-Jun
-![Weak-hands-buster 2018 apr-jun](https://user-images.githubusercontent.com/13994516/65391728-f8176500-dd6c-11e9-95f4-5410ad4fd2be.png)
+* An additional condition was implemented at the take position event of each strategy so that each specializes in two different volatility ranges. The *Xtreme* strategy works best in extreme volatility situations (*e.g.* ATH period in late 2017 and early 2018). The *Steep* strategy works best in *normal* (by BTC standards) volatility situations.
 
-### 2018 Jul-Aug
-![Weak-hands-buster 2018 jul-sep](https://user-images.githubusercontent.com/13994516/65391760-27c66d00-dd6d-11e9-9c1b-4ce11d1ef1f8.png)
+* Management of take profit implemented originally was greatly improved for the *Steep* strategy, with a few simple additions and checks in the conditions that determine the events that switch phases.
 
-### 2018 Oct-Dec
-![Weak-hands-buster 2018 oct-dec](https://user-images.githubusercontent.com/13994516/65391772-517f9400-dd6d-11e9-8b16-e26f9694a5bf.png)
+* The trailing stop for the *Steep* strategy was raised from 5 to 5.25% above the 20 MA. The trailing was delayed to kick-in only after the market has dropped 5%. The initial stop target remains the same at 3%.
 
-### 2019 Jan-Aug
-![Weak-hands-buster 2019](https://user-images.githubusercontent.com/13994516/65391566-f2208480-dd6a-11e9-82d4-4dc05e9a7e0a.png)
+## Original WHB Live Performance
+
+| Details | Sep 2019 - Mar 2020 |
+| :--- | :---: |
+| Trades: | 7 |
+| Hits: | 4 |
+| Fails: | 3 |
+| Hit Ratio: | 57% |
+| ROI*: | 76% |
+
+## Original WHB Main Live Trades
+
+### Sep 2019
+
+![6th Sep  2019](https://user-images.githubusercontent.com/13994516/79866577-43febb00-83dd-11ea-851a-398db2c4a60c.PNG)
+
+### Nov 2019
+
+![19th Nov  2019](https://user-images.githubusercontent.com/13994516/79866595-4d882300-83dd-11ea-9608-b57a342690e3.PNG)
+
+### Mar 2020
+
+![8th Mar  2020](https://user-images.githubusercontent.com/13994516/79866599-4eb95000-83dd-11ea-9c51-66ffd99b41bd.PNG)
+
+### Original WHB Performance in Backtests (Poloniex)
+
+| Details | 2019 | 2018 |
+| :--- | :---: | :---: |
+| Trades: | 9 | 19 |
+| Hits: | 8 | 12 |
+| Fails: | 1 | 7 |
+| ROI: | 106% | 549% |
 
 # Disclaimer
 
