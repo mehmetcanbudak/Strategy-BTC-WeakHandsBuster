@@ -49,7 +49,7 @@ Split the goal into two fundamental notions:
 
 2. **Take the clearest and most promising opportunities only**. We pass on everything else to avoid failures and to preserve capital.
 
-## Trading idea
+## Trading Idea
 
 The original system is dissected [in this Hackernoon article](https://hackernoon.com/how-to-increase-your-bitcoin-holdings-in-a-bear-market-part-1-kjwp2gwu). Version 2 maintains the trading idea and the take position event almost intact. 
 
