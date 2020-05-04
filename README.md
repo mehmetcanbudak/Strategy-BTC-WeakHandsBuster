@@ -18,7 +18,7 @@ People not interested in trading automation may still obtain the strategy's rule
 
 ## WHB V.2 Performance in Backtests (Binance) at the Time of Publishing
 
-| Details | Jan 2018 - Mar 2020 | 2020 (Jan - Mar) | 2019 | 2018 | 
+| Details | Jan'18 - Mar'20 | 2020 Jan-Mar | 2019 | 2018 | 
 | :--- | :---: | :---: | :---: | :---: |
 | Trades: | **24** | 2 | 9 | 13 |
 | Hits: | **19** | 1 | 8 | 10 |
