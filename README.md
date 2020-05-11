@@ -55,6 +55,16 @@ The original system is dissected [in this Hackernoon article](https://hackernoon
 
 The main trading idea is to identify short-term reversals as well as continuations and deepening of trends marked by a break down of the Bollinger Bands (BB) in the 1-hour chart, using the Percentage Bandwidth (%B) indicator, the Bollinger Bands Moving Average (BB MA) and the Bollinger Band deviation to assess momentum and volatility, optimize the take position event, and filter out late entries.
 
+## Trading Frequency
+
+The strategy is designed with the one-hour time frame as the main decision-making instance, meaning that it makes trigger and take position decisions upon the closing of the one-hour candle.
+
+That said, when running live on Superalgos, it should be run on the one-minute time frame so as to allow it to react fast to market moves when evaluating take profit and stop loss targets.
+
+Because the strategy is rather conservative in it's design, it doesn't trade every opportunity that may occur. Instead, the strategy is quite selective, and trades only the most promissing ones.
+
+As a consequence, and as you may infer from the number of trades in the backtesting report mentioned above and the live trading performance of WHB V1 described below, the strategy performs an average of about one trade per month.
+
 ## WHB V.2&mdash;What Changed
 
 * The two different situations making up the take position event were split into two separate strategies operating under the same trading system. This means that take profit and stop targets may be managed separately for each take position situation, as it should have been from the start. This is the first case of two complementary strategies running under the same trading system.
